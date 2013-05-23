@@ -20,6 +20,7 @@ int drawable hospital_icon 0x7f020002
 int drawable ic_launcher 0x7f020003
 int drawable para_icon 0x7f020004
 int drawable pharma_icon 0x7f020005
+int drawable polizia_icon 0x7f020006
 int id action_settings 0x7f04000d
 int id btnGoToCamera 0x7f04000b
 int id btnGoToMap 0x7f040009
