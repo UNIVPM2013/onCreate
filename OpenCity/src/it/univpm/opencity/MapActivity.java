@@ -13,6 +13,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 
@@ -53,7 +55,8 @@ public class MapActivity extends FragmentActivity {
     }
     private void setUpMap() {
         mMap.addMarker(new MarkerOptions().position(new LatLng(43.614827,13.519707)).title("Ancona"));
-        mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(getResources().getInteger(R.drawable.pharma_icon))));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(42.614827,12.519707)).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.pharma_icon))));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(44.614827,14.519707)).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.hospital_icon))));
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(ANCONA));
     }
 
