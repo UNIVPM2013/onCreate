@@ -18,10 +18,11 @@ int drawable carabinieri_icon 0x7f020000
 int drawable farma_icon 0x7f020001
 int drawable hospital_icon 0x7f020002
 int drawable ic_launcher 0x7f020003
-int drawable para_icon 0x7f020004
-int drawable pharma_icon 0x7f020005
-int drawable polizia_icon 0x7f020006
-int drawable vigilifuoco_icon 0x7f020007
+int drawable museo_icon 0x7f020004
+int drawable para_icon 0x7f020005
+int drawable pharma_icon 0x7f020006
+int drawable polizia_icon 0x7f020007
+int drawable vigilifuoco_icon 0x7f020008
 int id action_settings 0x7f04000f
 int id btnGoToCamera 0x7f04000b
 int id btnGoToMap 0x7f040009
