@@ -82,6 +82,7 @@ public class MapActivity extends FragmentActivity {
 	List<Address> caramba = null;
 	public ArrayList<Farmacia> farmacie = null;
 	public ArrayList<Farmacia> parafarmacie = null;
+	List<Address> polizia = null;
 	public GetPosteTask(Context context) {
 	    super();
 	    mContext = context;
@@ -100,6 +101,7 @@ public class MapActivity extends FragmentActivity {
 
 	        addresses = geocoder.getFromLocationName("poste italiane ancona", 10);
 	        caramba = geocoder.getFromLocationName("carabinieri ancona", 10);
+	        polizia = geocoder.getFromLocationName("questura ancona", 5);
 	        farmacie = Opdata.getFarmacie();
 	        parafarmacie  = Opdata.getParafarmacie();
 	    } catch (IOException e1) {
@@ -156,6 +158,13 @@ public class MapActivity extends FragmentActivity {
 
 	        }	   
 	    }
+	    if (polizia != null && polizia.size() > 0) {
+	        // Get the first address
+	        for (Address pol: polizia){
+	            mMap.addMarker(new MarkerOptions().position(new LatLng(pol.getLatitude(),pol.getLongitude())).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.polizia_icon))));
+
+	        }	   
+	    } 
     }
 }
 
