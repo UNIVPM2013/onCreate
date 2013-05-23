@@ -2,10 +2,11 @@ package it.univpm.opencity;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 
-public class MapActivity extends Activity {
-
+public class MapActivity extends FragmentActivity {
+	public GoogleMap map ;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
