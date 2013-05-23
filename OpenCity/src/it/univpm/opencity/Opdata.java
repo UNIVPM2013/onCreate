@@ -15,7 +15,7 @@ import org.json.JSONObject;
 public class Opdata {
 	private static String CITY = "ANCONA";
 
-	public ArrayList<Farmacia> getFarmacie() {
+	public static ArrayList<Farmacia> getFarmacie() {
 		ArrayList<Farmacia> farm_list = new ArrayList<Farmacia>();
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpGet httpget = new HttpGet(
@@ -58,7 +58,7 @@ public class Opdata {
 		return farm_list;
 	}
 
-	public ArrayList<Farmacia> getParafarmacie() {
+	public static ArrayList<Farmacia> getParafarmacie() {
 		ArrayList<Farmacia> pfarm_list = new ArrayList<Farmacia>();
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpGet httpget = new HttpGet(
@@ -102,7 +102,7 @@ public class Opdata {
 
 	}
 
-	public ArrayList<Museo> getMusei() {
+	public static ArrayList<Museo> getMusei() {
 		ArrayList<Museo> musei_list = new ArrayList<Museo>();
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpGet httpget = new HttpGet(
@@ -116,7 +116,7 @@ public class Opdata {
 
 	}
 
-	class Farmacia {
+	static class Farmacia {
 		public String getNome() {
 			return nome;
 		}
