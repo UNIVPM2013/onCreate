@@ -1,6 +1,12 @@
 package it.univpm.opencity;
 
 
+<<<<<<< HEAD
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+=======
+>>>>>>> 2bb42db33bb168771ddfcfd933cc59150a95e3b9
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -12,11 +18,17 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import 	com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 
 public class MapActivity extends FragmentActivity {
@@ -51,6 +63,7 @@ public class MapActivity extends FragmentActivity {
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 setUpMap();
+                new GetPosteTask(this).execute();
             }
         }
     }
@@ -60,6 +73,71 @@ public class MapActivity extends FragmentActivity {
         mMap.addMarker(new MarkerOptions().position(new LatLng(44.614827,14.519707)).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.hospital_icon))));
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(ANCONA));
     }
+    
+    private class GetPosteTask extends AsyncTask<Location, Void, String> {
+	Context mContext;
+	List<Address> addresses = null;
+	List<Address> caramba = null;
+	public GetPosteTask(Context context) {
+	    super();
+	    mContext = context;
+	}
+	
+	
+	@Override
+	protected String doInBackground(Location... params) {
+	    Geocoder geocoder =
+	            new Geocoder(mContext, Locale.getDefault());
+	    // Get the current location from the input parameter list
+//	    Location loc = params[0];
+	    // Create a list to contain the result address
+	    
+	    try {
+
+	        addresses = geocoder.getFromLocationName("poste italiane ancona", 10);
+	        caramba = geocoder.getFromLocationName("carabinieri ancona", 10);
+	    } catch (IOException e1) {
+	    Log.e("LocationSampleActivity",
+	            "IO Exception in getFromLocation()");
+	    e1.printStackTrace();
+	    return ("IO Exception trying to get address");
+	    } catch (IllegalArgumentException e2) {
+	    // Error message to post in the log
+	    String errorString = "Illegal arguments ";
+	    Log.e("LocationSampleActivity", errorString);
+	    e2.printStackTrace();
+	    return errorString;
+	    }
+	    // If the reverse geocode returned an address
+
+	        /*
+	         * Format the first line of address (if available),
+	         * city, and country name.
+	         */
+	        String addressText = "";
+	        // Return the text
+	        return addressText;
+
+	}
+    @Override
+    protected void onPostExecute(String address) {
+        // Set activity indicator visibility to "gone"
+	    if (addresses != null && addresses.size() > 0) {
+	        // Get the first address
+	        for (Address addres: addresses){
+	            mMap.addMarker(new MarkerOptions().position(new LatLng(addres.getLatitude(),addres.getLongitude())).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+
+	        }	   
+	    } 
+	    if (caramba != null && caramba.size() > 0) {
+	        // Get the first address
+	        for (Address cara: caramba){
+	            mMap.addMarker(new MarkerOptions().position(new LatLng(cara.getLatitude(),cara.getLongitude())).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.carabinieri_icon))));
+
+	        }	   
+	    } 
+    }
+}
 
 
 }
