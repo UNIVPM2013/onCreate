@@ -31,4 +31,22 @@
         android:layout_centerVertical="true"
         android:text="Go to Map" />
 
+    <Button
+        android:id="@+id/share_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnGoToMap"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:text="Share on Google+" />
+
+<com.google.android.gms.common.SignInButton
+    android:id="@+id/sign_in_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/share_button"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="17dp" >
+</com.google.android.gms.common.SignInButton>
+
 </RelativeLayout>
