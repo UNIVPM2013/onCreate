@@ -8,6 +8,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import 	com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -16,6 +18,8 @@ import android.view.Menu;
 
 public class MapActivity extends FragmentActivity {
 	public GoogleMap mMap ;
+	static  BitmapDescriptorFactory icon;
+	
     static final CameraPosition ANCONA =
             new CameraPosition.Builder().target(new LatLng(43.614827,13.519707))
                     .zoom(10.5f)
@@ -49,6 +53,7 @@ public class MapActivity extends FragmentActivity {
     }
     private void setUpMap() {
         mMap.addMarker(new MarkerOptions().position(new LatLng(43.614827,13.519707)).title("Ancona"));
+        mMap.addMarker(new MarkerOptions().icon());
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(ANCONA));
     }
 
