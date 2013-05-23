@@ -28,6 +28,17 @@ public class MainActivity extends Activity {
 				startActivity(intent);
 			}
 		});
+		
+		Button btnGotoMapActivity = (Button) findViewById(R.id.btnGoToMap);
+		btnGotoMapActivity.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {		
+				Intent intent = new Intent(MainActivity.this,
+						MapActivity.class);
+				startActivity(intent);
+			}
+		});
 		///
 	}
 

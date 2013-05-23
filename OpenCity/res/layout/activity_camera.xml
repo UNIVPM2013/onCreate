@@ -42,23 +42,6 @@
         android:layout_marginTop="22dp"
         android:text="Scatta foto" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/photoResultView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:text="Invia segnalazione" />
-
-    <ImageView
-        android:id="@+id/photoResultView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/btnScatta"
-        android:layout_toRightOf="@+id/btnScatta"
-        android:src="@android:drawable/alert_light_frame" />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -67,5 +50,22 @@
         android:layout_alignParentTop="true"
         android:text="Inserisci la segnalazione:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/btnGoToMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/photoResultView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:text="Invia segnalazione" />
+
+    <ImageView
+        android:id="@+id/photoResultView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_alignTop="@+id/btnScatta"
+        android:src="@android:drawable/alert_light_frame" />
 
 </RelativeLayout>
