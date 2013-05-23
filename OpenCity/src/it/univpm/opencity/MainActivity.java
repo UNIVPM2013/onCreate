@@ -1,12 +1,26 @@
 package it.univpm.opencity;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import com.google.android.gms.auth.GoogleAuthException;
+import com.google.android.gms.auth.GoogleAuthUtil;
+import com.google.android.gms.auth.UserRecoverableAuthException;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
 import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
+import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.plus.PlusClient;
 import com.google.android.gms.plus.PlusClient.Builder;
+import com.google.android.gms.plus.PlusClient.OnPersonLoadedListener;
 import com.google.android.gms.plus.PlusShare;
+import com.google.android.gms.plus.model.people.Person;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,12 +36,14 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements ConnectionCallbacks,
-		OnConnectionFailedListener,OnClickListener {
+		OnConnectionFailedListener,OnClickListener,PlusClient.OnPersonLoadedListener {
 	private static final int REQUEST_CODE_RESOLVE_ERR = 9000;
 
 	private ProgressDialog mConnectionProgressDialog;
 	private PlusClient mPlusClient;
 	private ConnectionResult mConnectionResult;
+	
+	HttpURLConnection urlConnection;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -154,12 +170,23 @@ public class MainActivity extends Activity implements ConnectionCallbacks,
 				.show();
 		mConnectionProgressDialog.dismiss();
 		Toast.makeText(this, "User is connected!", Toast.LENGTH_LONG).show();
+		
+		
+		mPlusClient.loadPerson(this, "me");
+		
+		
 
 	}
 
+	
 	@Override
 	public void onDisconnected() {
 		Log.d("opencity", "disconnected");
+	}
+	@Override
+	public void onPersonLoaded(ConnectionResult arg0, Person arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
