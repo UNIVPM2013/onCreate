@@ -115,7 +115,7 @@ public class Opdata {
 	}
 
 	public static ArrayList<Museo> getMusei() {
-		ArrayList<Museo> musei_list = new ArrayList<Museo>();
+		ArrayList<Museo> musei_list = null;
 
 		URL url;
 		try {
@@ -126,19 +126,42 @@ public class Opdata {
 			XmlPullParser parser = Xml.newPullParser();
 			parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
 			parser.setInput(conn.getInputStream(), null);
-			parser.nextTag();
-			parser.require(XmlPullParser.START_TAG, null, "mibac-list");
-			while (parser.next() != XmlPullParser.END_TAG) {
-				if (parser.getEventType() != XmlPullParser.START_TAG) {
-					continue;
+			int eventType = parser.getEventType();
+			Museo museo = null;
+			String text = null;
+
+			while (eventType != XmlPullParser.END_DOCUMENT) {
+
+				String tagname = parser.getName();
+				switch (eventType) {
+				case XmlPullParser.START_TAG:
+					if (tagname.equalsIgnoreCase("mibac")) {
+						// create a new instance of employee
+						musei_list = new ArrayList<Opdata.Museo>();
+					} else if (tagname.equalsIgnoreCase("luogodellacultura")) {
+						museo = new Museo();
+					}
+					break;
+
+				case XmlPullParser.TEXT:
+					text = parser.getText();
+					break;
+
+				case XmlPullParser.END_TAG:
+					if (tagname.equalsIgnoreCase("nomestandard")) {
+						// add employee object to list
+						museo.setNome(text);
+					} else if (tagname.equalsIgnoreCase("latitudineX")) {
+						museo.setLat(Double.parseDouble(text));
+					} else if (tagname.equalsIgnoreCase("longitudineY")) {
+						museo.setLon(Integer.parseInt(text));
+					}
+					break;
+
+				default:
+					break;
 				}
-				String name = parser.getName();
-				// Starts by looking for the entry tag
-				if (name.equals("mibac")) {
-//					entries.add(readEntry(parser));
-				} else {
-					skip(parser);
-				}
+				eventType = parser.next();
 			}
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -153,25 +176,33 @@ public class Opdata {
 		return musei_list;
 	}
 
-	private static void skip(XmlPullParser parser)
-			throws XmlPullParserException, IOException {
-		if (parser.getEventType() != XmlPullParser.START_TAG) {
-			throw new IllegalStateException();
-		}
-		int depth = 1;
-		while (depth != 0) {
-			switch (parser.next()) {
-			case XmlPullParser.END_TAG:
-				depth--;
-				break;
-			case XmlPullParser.START_TAG:
-				depth++;
-				break;
-			}
-		}
-	}
+	static class Museo {
+		String nome;
+		double lat, lon;
 
-	class Museo {
+		public void setNome(String nome) {
+			this.nome = nome;
+		}
+
+		public void setLat(double lat) {
+			this.lat = lat;
+		}
+
+		public void setLon(double lon) {
+			this.lon = lon;
+		}
+
+		public String getNome() {
+			return nome;
+		}
+
+		public double getLat() {
+			return lat;
+		}
+
+		public double getLon() {
+			return lon;
+		}
 
 	}
 
