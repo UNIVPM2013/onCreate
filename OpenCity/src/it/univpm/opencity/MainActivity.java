@@ -1,13 +1,30 @@
 package it.univpm.opencity;
 
+import it.univpm.opencity.Opdata.Farmacia;
+import it.univpm.opencity.dummy.SondaggiContent;
+import it.univpm.opencity.dummy.SondaggiContent.DummyItem;
+
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.ParseException;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,6 +43,7 @@ import com.google.android.gms.plus.PlusShare;
 import com.google.android.gms.plus.model.people.Person;
 
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -47,12 +65,13 @@ public class MainActivity extends Activity implements ConnectionCallbacks,
 	private ConnectionResult mConnectionResult;
 	
 	HttpURLConnection urlConnection;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
+		
 		mPlusClient = new PlusClient.Builder(this, this, this)
 				.setVisibleActivities("http://schemas.google.com/AddActivity",
 						"http://schemas.google.com/BuyActivity").build();
@@ -100,9 +119,33 @@ public class MainActivity extends Activity implements ConnectionCallbacks,
 				startActivityForResult(shareIntent, 0);
 			}
 		});
+		
+		Button gotoSondaggi = (Button) findViewById(R.id.btnSondaggi);
+		gotoSondaggi.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// Launch the Google+ share dialog with attribution to your app.
+				Intent intent = new Intent(MainActivity.this, ItemListActivity.class);
+				startActivity(intent);
+			}
+		});
 
 		// /
 	}
+	
+	public static InputStream getInputStreamFromUrl(String url) {
+		  InputStream content = null;
+		  try {
+		    HttpClient httpclient = new DefaultHttpClient();
+		    HttpResponse response = httpclient.execute(new HttpGet(url));
+		    content = response.getEntity().getContent();
+		  } catch (Exception e) {
+		    //Log.("[GET REQUEST]", "Network exception", e);
+		  }
+		    return content;
+		}
+	
+	
 @Override
 	public void onClick(View view) {
 		
