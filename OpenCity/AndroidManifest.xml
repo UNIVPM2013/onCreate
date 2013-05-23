@@ -52,6 +52,10 @@
             android:name="it.univpm.opencity.MapActivity"
             android:label="@string/title_activity_map" >
         </activity>
+        <activity
+            android:name="it.univpm.opencity.CameraActivity"
+            android:label="@string/title_activity_map" >
+        </activity>
     </application>
 
 </manifest>
