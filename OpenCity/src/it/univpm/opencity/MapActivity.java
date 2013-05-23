@@ -1,6 +1,5 @@
 package it.univpm.opencity;
 
-import it.example.maps.R;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.CameraUpdateFactory;
