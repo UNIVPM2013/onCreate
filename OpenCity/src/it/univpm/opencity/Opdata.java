@@ -1,10 +1,7 @@
 package it.univpm.opencity;
 
-import it.univpm.opencity.OpenData.Farmacia;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
@@ -15,8 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class OpenData {
-
+public class Opdata {
 	private static String CITY = "ANCONA";
 
 	public ArrayList<Farmacia> getFarmacie() {
@@ -105,10 +101,8 @@ public class OpenData {
 		}
 
 		return pfarm_list;
-	}
 
-	
-	
+	}
 	class Farmacia {
 		public String getNome() {
 			return nome;
@@ -176,5 +170,8 @@ public class OpenData {
 			this.lon = lon;
 		}
 	}
-
 }
+
+
+
+
