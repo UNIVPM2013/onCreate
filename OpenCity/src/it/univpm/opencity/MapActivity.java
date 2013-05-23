@@ -18,7 +18,7 @@ import android.view.Menu;
 
 public class MapActivity extends FragmentActivity {
 	public GoogleMap mMap ;
-	static  BitmapDescriptorFactory icon;
+	
 	
     static final CameraPosition ANCONA =
             new CameraPosition.Builder().target(new LatLng(43.614827,13.519707))
@@ -53,7 +53,7 @@ public class MapActivity extends FragmentActivity {
     }
     private void setUpMap() {
         mMap.addMarker(new MarkerOptions().position(new LatLng(43.614827,13.519707)).title("Ancona"));
-        mMap.addMarker(new MarkerOptions().icon());
+        mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(getResources().getInteger(R.drawable.pharma_icon))));
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(ANCONA));
     }
 
