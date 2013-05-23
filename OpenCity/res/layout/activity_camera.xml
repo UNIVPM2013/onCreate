@@ -8,4 +8,64 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".CameraActivity" >
 
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:maxLines="3"
+        android:ems="10"
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnScatta"
+        android:layout_below="@+id/editText1"
+        android:layout_marginTop="42dp"
+        android:text="Se vuoi aggiungi una foto"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/btnScatta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_below="@+id/textView2"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="22dp"
+        android:text="Scatta foto" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/photoResultView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:text="Invia segnalazione" />
+
+    <ImageView
+        android:id="@+id/photoResultView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btnScatta"
+        android:layout_toRightOf="@+id/btnScatta"
+        android:src="@android:drawable/alert_light_frame" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_alignParentTop="true"
+        android:text="Inserisci la segnalazione:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
 </RelativeLayout>
