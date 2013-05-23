@@ -9,11 +9,8 @@
         android:protectionLevel="signature" />
 	
     <uses-permission android:name="it.univpm.opencity.permission.MAPS_RECEIVE" />
-<<<<<<< HEAD
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     
-=======
->>>>>>> a3f419cb647a18a0a4501926b573895d9065ab40
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

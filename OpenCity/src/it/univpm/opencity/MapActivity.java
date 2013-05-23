@@ -65,7 +65,8 @@ public class MapActivity extends FragmentActivity {
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 setUpMap();
-                new GetPosteTask(this).execute();
+                new GetPosteTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                new GetHealthTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
         }
     }
@@ -75,14 +76,12 @@ public class MapActivity extends FragmentActivity {
         mMap.addMarker(new MarkerOptions().position(new LatLng(44.614827,14.519707)).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.hospital_icon))));
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(ANCONA));
     }
-    
     private class GetPosteTask extends AsyncTask<Location, Void, String> {
 	Context mContext;
 	List<Address> addresses = null;
 	List<Address> caramba = null;
-	public ArrayList<Farmacia> farmacie = null;
-	public ArrayList<Farmacia> parafarmacie = null;
 	List<Address> polizia = null;
+	List<Address> fuoco = null;
 	public GetPosteTask(Context context) {
 	    super();
 	    mContext = context;
@@ -102,8 +101,8 @@ public class MapActivity extends FragmentActivity {
 	        addresses = geocoder.getFromLocationName("poste italiane ancona", 10);
 	        caramba = geocoder.getFromLocationName("carabinieri ancona", 10);
 	        polizia = geocoder.getFromLocationName("questura ancona", 5);
-	        farmacie = Opdata.getFarmacie();
-	        parafarmacie  = Opdata.getParafarmacie();
+	        fuoco = geocoder.getFromLocationName("Vigili del Fuoco, Ancona", 5);
+
 	    } catch (IOException e1) {
 	    Log.e("LocationSampleActivity",
 	            "IO Exception in getFromLocation()");
@@ -144,6 +143,70 @@ public class MapActivity extends FragmentActivity {
 
 	        }	   
 	    } 
+
+	    if (polizia != null && polizia.size() > 0) {
+	        // Get the first address
+	        for (Address pol: polizia){
+	            mMap.addMarker(new MarkerOptions().position(new LatLng(pol.getLatitude(),pol.getLongitude())).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.polizia_icon))));
+
+	        }	   
+	    } 
+	    if (fuoco != null && fuoco.size() > 0) {
+	        // Get the first address
+	        for (Address fuo: fuoco){
+	            mMap.addMarker(new MarkerOptions().position(new LatLng(fuo.getLatitude(),fuo.getLongitude())).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.vigilifuoco_icon))));
+
+	        }	   
+	    }
+    }
+}
+    private class GetHealthTask extends AsyncTask<Location, Void, String> {
+	Context mContext;
+	List<Address> addresses = null;
+	List<Address> caramba = null;
+	public ArrayList<Farmacia> farmacie = null;
+	public ArrayList<Farmacia> parafarmacie = null;
+	List<Address> polizia = null;
+	public GetHealthTask(Context context) {
+	    super();
+	    mContext = context;
+	}
+	
+	
+	@Override
+	protected String doInBackground(Location... params) {
+	    Geocoder geocoder =
+	            new Geocoder(mContext, Locale.getDefault());
+	    // Get the current location from the input parameter list
+//	    Location loc = params[0];
+	    // Create a list to contain the result address
+	    
+	    try {
+
+	        farmacie = Opdata.getFarmacie();
+	        parafarmacie  = Opdata.getParafarmacie();
+	    }catch (IllegalArgumentException e2) {
+	    // Error message to post in the log
+	    String errorString = "Illegal arguments ";
+	    Log.e("LocationSampleActivity", errorString);
+	    e2.printStackTrace();
+	    return errorString;
+	    }
+	    // If the reverse geocode returned an address
+
+	        /*
+	         * Format the first line of address (if available),
+	         * city, and country name.
+	         */
+	        String addressText = "";
+	        // Return the text
+	        return addressText;
+
+	}
+    @Override
+    protected void onPostExecute(String address) {
+        // Set activity indicator visibility to "gone"
+
 	    if (farmacie != null && farmacie.size() > 0) {
 	        // Get the first address
 	        for (Farmacia farm: farmacie){
@@ -158,13 +221,6 @@ public class MapActivity extends FragmentActivity {
 
 	        }	   
 	    }
-	    if (polizia != null && polizia.size() > 0) {
-	        // Get the first address
-	        for (Address pol: polizia){
-	            mMap.addMarker(new MarkerOptions().position(new LatLng(pol.getLatitude(),pol.getLongitude())).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.polizia_icon))));
-
-	        }	   
-	    } 
     }
 }
 
