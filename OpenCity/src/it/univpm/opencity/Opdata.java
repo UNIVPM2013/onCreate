@@ -57,14 +57,12 @@ public class Opdata {
 
 		return farm_list;
 	}
-	
-	
 
 	public ArrayList<Farmacia> getParafarmacie() {
 		ArrayList<Farmacia> pfarm_list = new ArrayList<Farmacia>();
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpGet httpget = new HttpGet(
-				"http://opendatasalutedata.cloudapp.net/v1/datacatalog/Farmacie/?$filter=descrizionecomune%20eq%20%27"
+				"http://opendatasalutedata.cloudapp.net/v1/datacatalog/Parafarmacie/?$filter=descrizionecomune%20eq%20%27"
 						+ CITY + "%27&format=json");
 		ResponseHandler<String> responseHandler = new BasicResponseHandler();
 		try {
@@ -103,6 +101,21 @@ public class Opdata {
 		return pfarm_list;
 
 	}
+
+	public ArrayList<Museo> getMusei() {
+		ArrayList<Museo> musei_list = new ArrayList<Museo>();
+		HttpClient httpclient = new DefaultHttpClient();
+		HttpGet httpget = new HttpGet(
+				"http://151.12.58.204:8080/DBUnicoManagerWeb/dbunicomanager/searchPlace?comune="
+						+ CITY + "&%20tipologiaLuogo=1");
+		ResponseHandler<String> responseHandler = new BasicResponseHandler();
+		return musei_list;
+	}
+
+	class Museo {
+
+	}
+
 	class Farmacia {
 		public String getNome() {
 			return nome;
@@ -171,7 +184,3 @@ public class Opdata {
 		}
 	}
 }
-
-
-
-
