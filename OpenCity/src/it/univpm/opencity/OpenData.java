@@ -1,7 +1,10 @@
 package it.univpm.opencity;
 
+import it.univpm.opencity.OpenData.Farmacia;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
@@ -58,7 +61,54 @@ public class OpenData {
 
 		return farm_list;
 	}
+	
+	
 
+	public ArrayList<Farmacia> getParafarmacie() {
+		ArrayList<Farmacia> pfarm_list = new ArrayList<Farmacia>();
+		HttpClient httpclient = new DefaultHttpClient();
+		HttpGet httpget = new HttpGet(
+				"http://opendatasalutedata.cloudapp.net/v1/datacatalog/Farmacie/?$filter=descrizionecomune%20eq%20%27"
+						+ CITY + "%27&format=json");
+		ResponseHandler<String> responseHandler = new BasicResponseHandler();
+		try {
+			JSONObject pfarm = new JSONObject(httpclient.execute(httpget,
+					responseHandler));
+			JSONArray farm_array = pfarm.getJSONArray("d");
+			for (int i = 0; i < farm_array.length(); i++) {
+				String nome = farm_array.getJSONObject(i).getString(
+						"denominazionesitologistico");
+				String indirizzo = farm_array.getJSONObject(i).getString(
+						"indirizzo");
+				String iva = farm_array.getJSONObject(i).getString("indirizzo");
+
+				String cap = farm_array.getJSONObject(i).getString("cap");
+
+				double lat = farm_array.getJSONObject(i)
+						.getDouble("latitudine");
+
+				double lon = farm_array.getJSONObject(i).getDouble(
+						"longitudine");
+				pfarm_list
+						.add(new Farmacia(nome, indirizzo, iva, cap, lat, lon));
+
+			}
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return pfarm_list;
+	}
+
+	
+	
 	class Farmacia {
 		public String getNome() {
 			return nome;
