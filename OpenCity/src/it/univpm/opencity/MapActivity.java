@@ -1,7 +1,10 @@
 package it.univpm.opencity;
 
 
+import it.univpm.opencity.Opdata.Farmacia;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -30,6 +33,8 @@ import android.view.Menu;
 
 public class MapActivity extends FragmentActivity {
 	public GoogleMap mMap ;
+
+	
 	
 	
     static final CameraPosition ANCONA =
@@ -75,6 +80,8 @@ public class MapActivity extends FragmentActivity {
 	Context mContext;
 	List<Address> addresses = null;
 	List<Address> caramba = null;
+	public ArrayList<Farmacia> farmacie = null;
+	public ArrayList<Farmacia> parafarmacie = null;
 	public GetPosteTask(Context context) {
 	    super();
 	    mContext = context;
@@ -93,6 +100,8 @@ public class MapActivity extends FragmentActivity {
 
 	        addresses = geocoder.getFromLocationName("poste italiane ancona", 10);
 	        caramba = geocoder.getFromLocationName("carabinieri ancona", 10);
+	        farmacie = Opdata.getFarmacie();
+	        parafarmacie  = Opdata.getParafarmacie();
 	    } catch (IOException e1) {
 	    Log.e("LocationSampleActivity",
 	            "IO Exception in getFromLocation()");
@@ -133,6 +142,20 @@ public class MapActivity extends FragmentActivity {
 
 	        }	   
 	    } 
+	    if (farmacie != null && farmacie.size() > 0) {
+	        // Get the first address
+	        for (Farmacia farm: farmacie){
+	            mMap.addMarker(new MarkerOptions().position(new LatLng(farm.getLat(),farm.getLon())).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.farma_icon))));
+
+	        }	   
+	    }
+	    if (parafarmacie != null && parafarmacie.size() > 0) {
+	        // Get the first address
+	        for (Farmacia para: parafarmacie){
+	            mMap.addMarker(new MarkerOptions().position(new LatLng(para.getLat(),para.getLon())).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.para_icon))));
+
+	        }	   
+	    }
     }
 }
 
