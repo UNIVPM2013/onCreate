@@ -1,9 +1,12 @@
 package it.univpm.opencity;
 
 
+<<<<<<< HEAD
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+=======
+>>>>>>> 2bb42db33bb168771ddfcfd933cc59150a95e3b9
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.CameraUpdateFactory;
