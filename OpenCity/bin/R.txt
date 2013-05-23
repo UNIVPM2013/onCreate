@@ -15,8 +15,14 @@ int attr zOrderOnTop 0x7f01000d
 int dimen activity_horizontal_margin 0x7f060000
 int dimen activity_vertical_margin 0x7f060001
 int drawable ic_launcher 0x7f020000
+<<<<<<< HEAD
 int id action_settings 0x7f040005
 int id hybrid 0x7f040004
+=======
+int id action_settings 0x7f040006
+int id hybrid 0x7f040004
+int id map 0x7f040005
+>>>>>>> 59cdf5542ac1dc2b767ca5495535c6b606adacc0
 int id none 0x7f040000
 int id normal 0x7f040001
 int id satellite 0x7f040002
