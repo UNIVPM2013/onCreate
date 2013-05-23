@@ -1,9 +1,9 @@
 package it.univpm.opencity;
 
-
-import it.univpm.opencity.dummy.SondaggiContent.DummyItem;
-
 import java.util.ArrayList;
+
+import it.univpm.opencity.dummy.OrdiniContent.OrdiniItem;
+import it.univpm.opencity.dummy.SondaggiContent.DummyItem;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -11,22 +11,22 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
 /**
- * An activity representing a list of Items. This activity has different
+ * An activity representing a list of Ordini. This activity has different
  * presentations for handset and tablet-size devices. On handsets, the activity
  * presents a list of items, which when touched, lead to a
- * {@link ItemDetailActivity} representing item details. On tablets, the
+ * {@link OrdineDetailActivity} representing item details. On tablets, the
  * activity presents the list of items and item details side-by-side using two
  * vertical panes.
  * <p>
  * The activity makes heavy use of fragments. The list of items is a
- * {@link ItemListFragment} and the item details (if present) is a
- * {@link ItemDetailFragment}.
+ * {@link OrdineListFragment} and the item details (if present) is a
+ * {@link OrdineDetailFragment}.
  * <p>
- * This activity also implements the required {@link ItemListFragment.Callbacks}
- * interface to listen for item selections.
+ * This activity also implements the required
+ * {@link OrdineListFragment.Callbacks} interface to listen for item selections.
  */
-public class ItemListActivity extends FragmentActivity implements
-		ItemListFragment.Callbacks {
+public class OrdineListActivity extends FragmentActivity implements
+		OrdineListFragment.Callbacks {
 
 	/**
 	 * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -37,12 +37,12 @@ public class ItemListActivity extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_item_list);
-		
-		 new GetSondaggioTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		setContentView(R.layout.activity_ordine_list);
+
+		 new GetOrdiniTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 			
 		
-		if (findViewById(R.id.item_detail_container) != null) {
+		if (findViewById(R.id.ordine_detail_container) != null) {
 			// The detail container view will be present only in the
 			// large-screen layouts (res/values-large and
 			// res/values-sw600dp). If this view is present, then the
@@ -51,17 +51,15 @@ public class ItemListActivity extends FragmentActivity implements
 
 			// In two-pane mode, list items should be given the
 			// 'activated' state when touched.
-			((ItemListFragment) getSupportFragmentManager().findFragmentById(
-					R.id.item_list)).setActivateOnItemClick(true);
+			((OrdineListFragment) getSupportFragmentManager().findFragmentById(
+					R.id.ordine_list)).setActivateOnItemClick(true);
 		}
-		
-		
 
 		// TODO: If exposing deep links into your app, handle intents here.
 	}
 
 	/**
-	 * Callback method from {@link ItemListFragment.Callbacks} indicating that
+	 * Callback method from {@link OrdineListFragment.Callbacks} indicating that
 	 * the item with the given ID was selected.
 	 */
 	@Override
@@ -71,27 +69,27 @@ public class ItemListActivity extends FragmentActivity implements
 			// adding or replacing the detail fragment using a
 			// fragment transaction.
 			Bundle arguments = new Bundle();
-			arguments.putString(ItemDetailFragment.ARG_ITEM_ID, id);
-			ItemDetailFragment fragment = new ItemDetailFragment();
+			arguments.putString(OrdineDetailFragment.ARG_ITEM_ID, id);
+			OrdineDetailFragment fragment = new OrdineDetailFragment();
 			fragment.setArguments(arguments);
 			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.item_detail_container, fragment).commit();
+					.replace(R.id.ordine_detail_container, fragment).commit();
 
 		} else {
 			// In single-pane mode, simply start the detail activity
 			// for the selected item ID.
-			Intent detailIntent = new Intent(this, ItemDetailActivity.class);
-			detailIntent.putExtra(ItemDetailFragment.ARG_ITEM_ID, id);
+			Intent detailIntent = new Intent(this, OrdineDetailActivity.class);
+			detailIntent.putExtra(OrdineDetailFragment.ARG_ITEM_ID, id);
 			startActivity(detailIntent);
 		}
 	}
 	
-	private class GetSondaggioTask extends AsyncTask<Void,Void,ArrayList<DummyItem>> {
+	private class GetOrdiniTask extends AsyncTask<Void,Void,ArrayList<OrdiniItem>> {
 		Context mContext;
 		
-		public ArrayList<DummyItem> sondaggio = null;		
+		public ArrayList<OrdiniItem> ordini = null;		
 		
-		public GetSondaggioTask(Context context) {
+		public GetOrdiniTask(Context context) {
 		    super();
 		    mContext = context;
 		}
@@ -102,26 +100,24 @@ public class ItemListActivity extends FragmentActivity implements
 
 
 	@Override
-	protected ArrayList<DummyItem> doInBackground(Void... params) {
+	protected ArrayList<OrdiniItem> doInBackground(Void... params) {
 		 try {
 
-		    	sondaggio = SondaggiData.getSondaggi();
+		    	ordini = OrdiniData.getOrdini();
 		        
 		    }catch (IllegalArgumentException e2) {
 		    // Error message to post in the log 
 		    }
-			return sondaggio;
+			return ordini;
 	}
 	
 	
 	@Override
-	   protected void onPostExecute(ArrayList<DummyItem> sondaggio) {
+	   protected void onPostExecute(ArrayList<OrdiniItem> ordini) {
 	       // Set activity indicator visibility to "gone"
-		ItemListFragment.refreshListAdapter();
+		OrdineListFragment.refreshListAdapter();
 		    
 	   }
 	
 	}
 }
-
-

@@ -32,19 +32,24 @@ public final class R {
         public static final int vigilifuoco_icon=0x7f020008;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000e;
+        public static final int action_settings=0x7f080013;
         public static final int btnGoToCamera=0x7f080008;
-        public static final int btnGoToMap=0x7f080004;
+        public static final int btnInviaSegnalazione=0x7f080004;
         public static final int btnScatta=0x7f080003;
-        public static final int btnSondaggi=0x7f08000b;
+        public static final int btnSondaggi=0x7f08000a;
+        public static final int btnStoricoOrdini=0x7f08000b;
         public static final int editText1=0x7f080000;
-        public static final int item_detail=0x7f08000d;
+        public static final int imgProfilo=0x7f08000d;
+        public static final int item_detail=0x7f080011;
         public static final int item_detail_container=0x7f080006;
         public static final int item_list=0x7f080007;
-        public static final int map=0x7f08000c;
+        public static final int map=0x7f08000e;
+        public static final int ordine_detail=0x7f080012;
+        public static final int ordine_detail_container=0x7f08000f;
+        public static final int ordine_list=0x7f080010;
         public static final int photoResultView=0x7f080005;
         public static final int share_button=0x7f080009;
-        public static final int sign_in_button=0x7f08000a;
+        public static final int sign_in_button=0x7f08000c;
         public static final int textView1=0x7f080001;
         public static final int textView2=0x7f080002;
     }
@@ -57,6 +62,7 @@ public final class R {
 
     For more on layout aliases, see:
     http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
+
     
 
     Layout alias to replace the single-pane version of the layout with a
@@ -64,13 +70,18 @@ public final class R {
 
     For more on layout aliases, see:
     http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
+
     
          */
         public static final int activity_item_list=0x7f030002;
         public static final int activity_item_twopane=0x7f030003;
         public static final int activity_main=0x7f030004;
         public static final int activity_map=0x7f030005;
-        public static final int fragment_item_detail=0x7f030006;
+        public static final int activity_ordine_detail=0x7f030006;
+        public static final int activity_ordine_list=0x7f030007;
+        public static final int activity_ordine_twopane=0x7f030008;
+        public static final int fragment_item_detail=0x7f030009;
+        public static final int fragment_ordine_detail=0x7f03000a;
     }
     public static final class menu {
         public static final int main=0x7f070000;
@@ -84,6 +95,8 @@ public final class R {
         public static final int title_activity_map=0x7f050003;
         public static final int title_item_detail=0x7f050006;
         public static final int title_item_list=0x7f050005;
+        public static final int title_ordine_detail=0x7f050008;
+        public static final int title_ordine_list=0x7f050007;
     }
     public static final class style {
         /** 

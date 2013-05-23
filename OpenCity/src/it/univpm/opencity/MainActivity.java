@@ -45,15 +45,20 @@ import com.google.android.gms.plus.model.people.Person;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements ConnectionCallbacks,
@@ -63,8 +68,19 @@ public class MainActivity extends Activity implements ConnectionCallbacks,
 	private ProgressDialog mConnectionProgressDialog;
 	private PlusClient mPlusClient;
 	private ConnectionResult mConnectionResult;
-	
+	ImageView imgProfilo;
 	HttpURLConnection urlConnection;
+	Drawable drawable;
+	String imgUrlparsed;
+	
+	Handler handler = new Handler(){
+	    @Override
+	    public void handleMessage(android.os.Message msg) {
+	    	imgProfilo.setImageDrawable(drawable);
+	        Log.i("System out","after set the image...");
+	    }
+	};
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +98,8 @@ public class MainActivity extends Activity implements ConnectionCallbacks,
 
 		findViewById(R.id.sign_in_button).setOnClickListener(this);
 
+		imgProfilo = (ImageView) findViewById(R.id.imgProfilo);
+		
 		// DA ELIMINARE POI!!
 		Button btnGotoCameraActivity = (Button) findViewById(R.id.btnGoToCamera);
 		btnGotoCameraActivity.setOnClickListener(new OnClickListener() {
@@ -94,7 +112,7 @@ public class MainActivity extends Activity implements ConnectionCallbacks,
 			}
 		});
 
-		Button btnGotoMapActivity = (Button) findViewById(R.id.btnGoToMap);
+		Button btnGotoMapActivity = (Button) findViewById(R.id.btnInviaSegnalazione);
 		btnGotoMapActivity.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -129,6 +147,16 @@ public class MainActivity extends Activity implements ConnectionCallbacks,
 				startActivity(intent);
 			}
 		});
+		
+		Button gotoStoricoOrdini = (Button) findViewById(R.id.btnStoricoOrdini);
+		gotoStoricoOrdini.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// Launch the Google+ share dialog with attribution to your app.
+				Intent intent = new Intent(MainActivity.this, OrdineListActivity.class);
+				startActivity(intent);
+			}
+		});
 
 		// /
 	}
@@ -151,6 +179,7 @@ public class MainActivity extends Activity implements ConnectionCallbacks,
 		
 	
 	if (view.getId() == R.id.sign_in_button && !mPlusClient.isConnected()) {
+		mConnectionProgressDialog.show();
 		mPlusClient.connect();
 		
 		/*if (mConnectionResult == null) {
@@ -230,13 +259,33 @@ public class MainActivity extends Activity implements ConnectionCallbacks,
 		Log.d("opencity", "disconnected");
 	}
 	@Override
-	public void onPersonLoaded(ConnectionResult arg0, Person person) {
+	public void onPersonLoaded(ConnectionResult arg0, final Person person) {
 		// TODO Auto-generated method stub
 		Toast.makeText(this, ""+person.getName(), Toast.LENGTH_LONG).show();
 		try {
 			JSONObject mainObject = new JSONObject(""+person.getName());
 			String cognome = mainObject.getString("familyName");
 			Toast.makeText(this, ""+cognome, Toast.LENGTH_LONG).show();
+			
+			Toast.makeText(this, ""+person.getImage().getUrl(), Toast.LENGTH_LONG).show();
+			
+			String imgUrl = person.getImage().getUrl();
+			String[] imgUrlparse = imgUrl.split("sz=");
+			imgUrlparsed = imgUrlparse[0]+"sz=100";
+			new Thread(new Runnable() {
+		        @Override
+		        public void run() {
+		            // TODO Auto-generated method stub        	
+		        	
+		        	
+		           drawable = LoadImageFromWebOperations(imgUrlparsed);
+		            handler.sendEmptyMessage(0);
+		        }
+		    }).start();
+			
+			
+		
+			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -244,5 +293,19 @@ public class MainActivity extends Activity implements ConnectionCallbacks,
 
 		
 	}
+	
+	private Drawable LoadImageFromWebOperations(String url) {
+	    try
+	      {
+	       InputStream is = (InputStream) new URL(url).getContent();
+	       Drawable d = Drawable.createFromStream(is, "src name");
+	       return d;
+	      }catch (Exception e) {
+	       System.out.println("Exc="+e);
+	       return null;
+	      }
+	}
+	
+	
 
 }

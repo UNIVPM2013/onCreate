@@ -17,7 +17,7 @@
 
     <!--
          The following two permissions are not required to use
-	     Google Maps Android API v2, but are recommended.
+	     Google Maps Android API v2, but are recommended.
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -70,6 +70,18 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ItemListActivity" />
+        </activity>
+        <activity
+            android:name="it.univpm.opencity.OrdineListActivity"
+            android:label="@string/title_ordine_list" >
+        </activity>
+        <activity
+            android:name="it.univpm.opencity.OrdineDetailActivity"
+            android:label="@string/title_ordine_detail"
+            android:parentActivityName=".OrdineListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OrdineListActivity" />
         </activity>
     </application>
 
