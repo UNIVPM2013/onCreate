@@ -27,12 +27,18 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+<<<<<<< HEAD
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+=======
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+>>>>>>> 92286ab773427861121001619e8409a157f4bca5
 import android.os.Bundle;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -47,17 +53,21 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.entity.mime.content.StringBody;
 
+=======
+>>>>>>> 92286ab773427861121001619e8409a157f4bca5
 public class CameraActivity extends Activity implements LocationListener {
 	private static final int CAMERA_PIC_REQUEST = 1337; 
 	
 	Double latitudine;
 	Double longitudine;
+<<<<<<< HEAD
 	Bitmap thumbnail;
 	int id_organo=1;
 	private EditText segnalazione;
@@ -67,6 +77,8 @@ public class CameraActivity extends Activity implements LocationListener {
 	private RadioButton radioMuni;
 
 	private RadioButton radioPublic;
+=======
+>>>>>>> 92286ab773427861121001619e8409a157f4bca5
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +91,7 @@ public class CameraActivity extends Activity implements LocationListener {
 		//String locationProvider = LocationManager.NETWORK_PROVIDER;
 		// Or, use GPS location data:
 		// String locationProvider = LocationManager.GPS_PROVIDER;
+<<<<<<< HEAD
 		radioAdmin = (RadioButton)findViewById(R.id.radio0);
 		radioMuni = (RadioButton)findViewById(R.id.radio1);
 		radioPublic = (RadioButton)findViewById(R.id.radio2);
@@ -116,6 +129,10 @@ public class CameraActivity extends Activity implements LocationListener {
 			}
 		});
 		segnalazione= (EditText)findViewById(R.id.editSegnalazione);
+=======
+		
+		
+>>>>>>> 92286ab773427861121001619e8409a157f4bca5
 		LocationListener locationListener = new LocationListener() {
 		    public void onLocationChanged(Location location) {
 		      // Called when a new location is found by the network location provider.
@@ -207,6 +224,7 @@ public class CameraActivity extends Activity implements LocationListener {
 		
 	}
 
+<<<<<<< HEAD
 public class PutSegnalazioni extends AsyncTask<Void, Void, String>{
 	String risposta;
 	Bitmap bm;
@@ -293,4 +311,6 @@ public class PutSegnalazioni extends AsyncTask<Void, Void, String>{
     }
 	
 }
+=======
+>>>>>>> 92286ab773427861121001619e8409a157f4bca5
 }

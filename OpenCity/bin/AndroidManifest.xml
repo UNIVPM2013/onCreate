@@ -4,7 +4,13 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
+<<<<<<< HEAD
     <permission android:name="it.univpm.opencity.permission.MAPS_RECEIVE" />
+=======
+    <permission
+        android:name="it.univpm.opencity.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+>>>>>>> 92286ab773427861121001619e8409a157f4bca5
 
     <uses-permission android:name="it.univpm.opencity.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -15,7 +21,11 @@
 
     <!--
          The following two permissions are not required to use
+<<<<<<< HEAD
 	     Google Maps Android API v2, but are recommended.
+=======
+	     Google Maps Android API v2, but are recommended.
+>>>>>>> 92286ab773427861121001619e8409a157f4bca5
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -50,6 +60,7 @@
             android:value="AIzaSyCjcRcdeNfnrqz9cEbE5IhsuqVGqdf_JlM" />
 
         <activity
+<<<<<<< HEAD
             android:name="it.univpm.opencity.DetSegnActivity"
             android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
@@ -61,3 +72,39 @@
     </application>
 
 </manifest>
+=======
+            android:name="it.univpm.opencity.MapActivity"
+            android:label="@string/title_activity_map" >
+        </activity>
+        <activity
+            android:name="it.univpm.opencity.CameraActivity"
+            android:label="@string/title_activity_map" >
+        </activity>
+        <activity
+            android:name="it.univpm.opencity.ItemListActivity"
+            android:label="@string/title_item_list" >
+        </activity>
+        <activity
+            android:name="it.univpm.opencity.ItemDetailActivity"
+            android:label="@string/title_item_detail"
+            android:parentActivityName=".ItemListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ItemListActivity" />
+        </activity>
+        <activity
+            android:name="it.univpm.opencity.OrdineListActivity"
+            android:label="@string/title_ordine_list" >
+        </activity>
+        <activity
+            android:name="it.univpm.opencity.OrdineDetailActivity"
+            android:label="@string/title_ordine_detail"
+            android:parentActivityName=".OrdineListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OrdineListActivity" />
+        </activity>
+    </application>
+
+</manifest>
+>>>>>>> 92286ab773427861121001619e8409a157f4bca5

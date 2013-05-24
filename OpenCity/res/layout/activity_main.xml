@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+<<<<<<< HEAD
     <ListView
         android:id="@+id/left_drawer"
         android:layout_width="240dp"
@@ -19,3 +20,71 @@
         android:dividerHeight="0dp"
         android:background="#111"/>
 </android.support.v4.widget.DrawerLayout>
+=======
+    <Button
+        android:id="@+id/btnGoToCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="111dp"
+        android:text="Go to Camera" />
+
+    <Button
+        android:id="@+id/btnInviaSegnalazione"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Go to Map" />
+
+    <Button
+        android:id="@+id/share_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnInviaSegnalazione"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:text="Share on Google+" />
+
+<Button
+    android:id="@+id/btnSondaggi"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/textView1"
+    android:layout_below="@+id/textView1"
+    android:layout_marginLeft="21dp"
+    android:layout_marginTop="46dp"
+    android:text="Sondaggi" />
+
+<Button
+    android:id="@+id/btnStoricoOrdini"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignBaseline="@+id/btnSondaggi"
+    android:layout_alignBottom="@+id/btnSondaggi"
+    android:layout_alignParentRight="true"
+    android:layout_marginRight="18dp"
+    android:text="Storico Ordini" />
+
+<com.google.android.gms.common.SignInButton
+    android:id="@+id/sign_in_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/textView1"
+    android:layout_below="@+id/share_button"
+    android:layout_marginTop="20dp"
+    android:layout_toLeftOf="@+id/btnStoricoOrdini" >
+
+</com.google.android.gms.common.SignInButton>
+
+<ImageView
+    android:id="@+id/imgProfilo"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignRight="@+id/btnStoricoOrdini"
+    android:layout_alignTop="@+id/sign_in_button"
+    android:src="@drawable/ic_launcher" />
+
+</RelativeLayout>
+>>>>>>> 92286ab773427861121001619e8409a157f4bca5

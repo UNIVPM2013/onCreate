@@ -4,6 +4,7 @@
     <string name="app_name">OpenCity</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_map">MapActivity</string>
+<<<<<<< HEAD
 	<string name="title_activity_camera">CameraActivity</string>
 	
 	<string-array name="menu_titles"> 
@@ -16,4 +17,12 @@
 	<string name="drawer_open">Navigation Drawer Aperto</string> 
 	<string name="drawer_close">Navigation Drawer Chiuso</string>
 	
+=======
+    <string name="title_activity_camera">CameraActivity</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="title_ordine_list">Ordini</string>
+    <string name="title_ordine_detail">Ordine Detail</string>
+
+>>>>>>> 92286ab773427861121001619e8409a157f4bca5
 </resources>

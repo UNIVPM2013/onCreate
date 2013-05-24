@@ -1,5 +1,6 @@
 package it.univpm.opencity;
 
+<<<<<<< HEAD
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.ProtocolException;
@@ -26,6 +27,13 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.widget.ImageButton;
+=======
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+>>>>>>> 92286ab773427861121001619e8409a157f4bca5
 import android.widget.TextView;
 
 import it.univpm.opencity.dummy.SondaggiContent;
@@ -70,12 +78,16 @@ public class ItemDetailFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 92286ab773427861121001619e8409a157f4bca5
 		View rootView = inflater.inflate(R.layout.fragment_item_detail,
 				container, false);
 
 		// Show the dummy content as text in a TextView.
 		if (mItem != null) {
+<<<<<<< HEAD
 			//((TextView) rootView.findViewById(R.id.item_detail))
 				//	.setText(mItem.description);
 			
@@ -204,6 +216,10 @@ public class ItemDetailFragment extends Fragment {
 				
 			}
 		});
+=======
+			((TextView) rootView.findViewById(R.id.item_detail))
+					.setText(mItem.description);
+>>>>>>> 92286ab773427861121001619e8409a157f4bca5
 		}
 
 		return rootView;

@@ -1,25 +1,31 @@
 package it.univpm.opencity;
 
+import it.univpm.opencity.dummy.SondaggiContent.DummyItem;
+
+import java.util.ArrayList;
+
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
 /**
- * An activity representing a single Item detail screen. This activity is only
+ * An activity representing a single Ordine detail screen. This activity is only
  * used on handset devices. On tablet-size devices, item details are presented
- * side-by-side with a list of items in a {@link ItemListActivity}.
+ * side-by-side with a list of items in a {@link OrdineListActivity}.
  * <p>
  * This activity is mostly just a 'shell' activity containing nothing more than
- * a {@link ItemDetailFragment}.
+ * a {@link OrdineDetailFragment}.
  */
-public class ItemDetailActivity extends FragmentActivity {
+public class OrdineDetailActivity extends FragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_item_detail);
+		setContentView(R.layout.activity_ordine_detail);
 
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -37,17 +43,15 @@ public class ItemDetailActivity extends FragmentActivity {
 			// Create the detail fragment and add it to the activity
 			// using a fragment transaction.
 			Bundle arguments = new Bundle();
-			arguments.putString(ItemDetailFragment.ARG_ITEM_ID, getIntent()
-					.getStringExtra(ItemDetailFragment.ARG_ITEM_ID));
-			ItemDetailFragment fragment = new ItemDetailFragment();
+			arguments.putString(OrdineDetailFragment.ARG_ITEM_ID, getIntent()
+					.getStringExtra(OrdineDetailFragment.ARG_ITEM_ID));
+			OrdineDetailFragment fragment = new OrdineDetailFragment();
 			fragment.setArguments(arguments);
 			getSupportFragmentManager().beginTransaction()
-					.add(R.id.item_detail_container, fragment).commit();
+					.add(R.id.ordine_detail_container, fragment).commit();
 		}
 	}
 
-<<<<<<< HEAD
-=======
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -59,11 +63,12 @@ public class ItemDetailActivity extends FragmentActivity {
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-			NavUtils.navigateUpTo(this,
-					new Intent(this, ItemListActivity.class));
+			NavUtils.navigateUpTo(this, new Intent(this,
+					OrdineListActivity.class));
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
->>>>>>> 92286ab773427861121001619e8409a157f4bca5
+	
+	
 }

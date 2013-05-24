@@ -55,6 +55,7 @@ public class SondaggiContent {
 		public String id;
 		public String content;
 		public String description;
+<<<<<<< HEAD
 		public String idSongaggio;
 		public String si;
 		public String no;
@@ -68,6 +69,13 @@ public class SondaggiContent {
 			this.si=si;
 			this.no=no;
 			this.data=data;
+=======
+		
+		public DummyItem(String id, String content, String description) {
+			this.id = id;
+			this.content = content;
+			this.description= description;
+>>>>>>> 92286ab773427861121001619e8409a157f4bca5
 		}
 
 		@Override
