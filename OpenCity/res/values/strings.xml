@@ -3,7 +3,17 @@
 
     <string name="app_name">OpenCity</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_map">MapActivity</string>
 	<string name="title_activity_camera">CameraActivity</string>
+	
+	<string-array name="menu_titles"> 
+	<item>Ordine del giorno</item> 
+	<item>Sondaggi</item> 
+	<item>Segnalazioni</item> 
+	<item>Mappe</item>
+	
+	</string-array> 
+	<string name="drawer_open">Navigation Drawer Aperto</string> 
+	<string name="drawer_close">Navigation Drawer Chiuso</string>
+	
 </resources>

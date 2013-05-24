@@ -13,4 +13,39 @@
       android:layout_height="match_parent"
       class="com.google.android.gms.maps.SupportMapFragment"/>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        
+        android:orientation="vertical" >
+
+        <RadioButton
+            android:id="@+id/radioAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Abilita Tutti" />
+
+        <RadioButton
+            android:id="@+id/radioHealt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Healt Care" />
+
+        <RadioButton
+            android:id="@+id/radioMusei"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Musei e Cultura" />
+
+        <RadioButton
+            android:id="@+id/radioSbirri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ordine Pubblico" />
+
+    </LinearLayout>
+
 </RelativeLayout>

@@ -17,6 +17,7 @@ import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+import android.util.Log;
 import android.util.Xml;
 
 public class Opdata {
@@ -129,15 +130,16 @@ public class Opdata {
 			int eventType = parser.getEventType();
 			Museo museo = null;
 			String text = null;
-
+			musei_list = new ArrayList<Opdata.Museo>();
 			while (eventType != XmlPullParser.END_DOCUMENT) {
 
 				String tagname = parser.getName();
+				
 				switch (eventType) {
 				case XmlPullParser.START_TAG:
 					if (tagname.equalsIgnoreCase("mibac")) {
 						// create a new instance of employee
-						musei_list = new ArrayList<Opdata.Museo>();
+						
 					} else if (tagname.equalsIgnoreCase("luogodellacultura")) {
 						museo = new Museo();
 					}
@@ -145,6 +147,7 @@ public class Opdata {
 
 				case XmlPullParser.TEXT:
 					text = parser.getText();
+					
 					break;
 
 				case XmlPullParser.END_TAG:
@@ -154,8 +157,12 @@ public class Opdata {
 					} else if (tagname.equalsIgnoreCase("latitudineX")) {
 						museo.setLat(Double.parseDouble(text));
 					} else if (tagname.equalsIgnoreCase("longitudineY")) {
-						museo.setLon(Integer.parseInt(text));
+						museo.setLon(Double.parseDouble(text));
+					}else if (tagname.equalsIgnoreCase("luogodellacultura")) {
+						Log.i("museo", "ok");
+						musei_list.add(museo);
 					}
+					
 					break;
 
 				default:

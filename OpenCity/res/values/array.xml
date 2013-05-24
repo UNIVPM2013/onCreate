@@ -1,0 +1,9 @@
+<resources>
+    <string-array name="nav_classes">
+        <item >it.univpm.opencity.MainFragment</item>
+        <item >it.univpm.opencity.ItemListFragment</item>
+        <item >it.univpm.opencity.SegnalazioniFragment</item>
+        <item >it.univpm.opencity.FragmentMap</item>
+    </string-array>
+    
+</resources>
